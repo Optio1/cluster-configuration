@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ labels:
+   run: echo-server
+ name: echo-server
+spec:
+ replicas: {{ .Values.replicas }}
+ selector:
+   matchLabels:
+     run: echo-server
+ template:
+   metadata:
+     labels:
+       run: echo-server
+   spec:
+     containers:
+     - name: echo-server
+       image: jmalloc/echo-server
+       ports:
+       - containerPort: 8080
