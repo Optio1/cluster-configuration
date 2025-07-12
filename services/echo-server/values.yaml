@@ -1,2 +1,2 @@
-hostname: echo.hyperpixel.net
+hostname: echo.apps.hyperpixel.net
 replicas: 3
