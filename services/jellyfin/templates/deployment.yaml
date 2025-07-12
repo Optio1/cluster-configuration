@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ labels:
+  app: jellyfin
+ name: jellyfin
+ namespace: jellyfin
+spec:
+ replicas: {{ .Values.replicas }}
+ selector:
+   matchLabels:
+     app: jellyfin
+ template:
+   metadata:
+     labels:
+       app: jellyfin
+   spec:
+     containers:
+     - name: jellyfin
+       image: jellyfin/jellyfin
+       ports:
+       - containerPort: 8096

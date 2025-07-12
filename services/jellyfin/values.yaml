@@ -1,0 +1,2 @@
+hostname: jellyfin.apps.hyperpixel.net
+replicas: 2
