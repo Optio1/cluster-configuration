@@ -20,8 +20,9 @@ spec:
        image: jellyfin/jellyfin
        ports:
        - containerPort: 8096
-       requests:
-        cpu: 1
-        memory: 400mi
-       limits:
-        memory: 800mi
+       resources:
+        requests:
+          cpu: 1
+          memory: 400mi
+        limits:
+          memory: 800mi
