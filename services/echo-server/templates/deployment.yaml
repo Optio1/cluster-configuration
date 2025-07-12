@@ -4,6 +4,7 @@ metadata:
  labels:
    run: echo-server
  name: echo-server
+ namespace: echo-server
 spec:
  replicas: {{ .Values.replicas }}
  selector:
