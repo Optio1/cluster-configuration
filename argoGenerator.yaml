@@ -16,6 +16,7 @@ spec:
     metadata:
       name: '{{.path.basename}}'
     spec:
+      project: default
       source:
         repoURL: https://github.com/Optio1/cluster-configuration.git
         targetRevision: HEAD
