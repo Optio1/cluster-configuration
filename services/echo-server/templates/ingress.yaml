@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
  name: echo-server-ingress
  namespace: echo-server
+ kubernetes.io/ingress.class: haproxy
 spec:
  rules:
  - host: {{ .Values.hostname }}
