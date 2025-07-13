@@ -15,12 +15,12 @@ spec:
       labels:
         app: jellyfin
     spec:
-      resources:
-        requests:
-          cpu: 600m
-          memory: 400Mi
-        limits:
-          memory: 800Mi
+      # resources:
+      #   requests:
+      #     cpu: 600m
+      #     memory: 400Mi
+      #   limits:
+      #     memory: 800Mi
       containers:
         - name: jellyfin
           image: jellyfin/jellyfin
