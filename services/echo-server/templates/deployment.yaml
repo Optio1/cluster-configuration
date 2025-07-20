@@ -16,7 +16,6 @@ spec:
        run: echo-server
    spec:
      containers:
-     - name: echo-server
-       image: jmalloc/echo-server
-       ports:
-       - containerPort: 8080
+      - name: echo-server
+        image: jmalloc/echo-server
+        ports:
