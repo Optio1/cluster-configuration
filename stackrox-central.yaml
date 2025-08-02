@@ -11,7 +11,10 @@ spec:
     chart: stackrox-central-services
     repoURL: https://raw.githubusercontent.com/stackrox/helm-charts/main/opensource/
     targetRevision: 400.8.1
-
+    helm:
+      valuesObject:
+        podSecurityPolicy:
+          enabled: false
   destination:
     server: "https://kubernetes.default.svc"
     namespace: stackrox
