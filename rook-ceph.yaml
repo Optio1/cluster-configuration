@@ -103,6 +103,7 @@ spec:
                   size: 2
               gateway:
                 instances: 3
+                port: 80
             storageClass:
               enabled: true
               name: ceph-bucket
