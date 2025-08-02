@@ -78,6 +78,8 @@ spec:
                   size: 2
               gateway:
                 instances: 3
+            storageClass:
+              enabled: true
 
               
           
