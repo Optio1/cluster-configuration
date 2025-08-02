@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rook-operator
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: rook-ceph
+    repoURL: 
+    targetRevision: v1.17.7
+    helm:
+      monitoring: 
+        enabled: true
+      csi:
+        serviceMonitor:
+          enabled: true
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: rook-ceph
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+    automated:
+      prune: true
+      selfHeal: true
