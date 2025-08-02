@@ -55,9 +55,9 @@ spec:
         cephBlockPools:
           - name: ceph-blockpool
             spec:
-              - failureDomain: host
-                replicated:
-                  size: 2
+              failureDomain: host
+              replicated:
+                size: 2
             storageClass:
               enabled: true
               name: ceph-block
