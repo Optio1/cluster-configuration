@@ -13,9 +13,9 @@ spec:
     targetRevision: v1.17.7
     helm:
       valuesObject:
-        monitoring:
-          enabled: true
-          #createPrometheusRules: true
+        #monitoring:
+        #  enabled: true
+        #  createPrometheusRules: true
         cephClusterSpec:
           dashboard:
             ssl: false
