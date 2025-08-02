@@ -20,3 +20,5 @@ spec:
                   number: 80
   tls:
     - secretName: echo-server-tls
+      hosts:
+        - echo.apps.hyperpixel.net
