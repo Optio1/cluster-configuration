@@ -1,0 +1,93 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rook-ceph
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  project: default
+  source:
+    chart: rook-ceph-cluster
+    repoURL: https://charts.rook.io/release
+    targetRevision: v1.17.7
+    helm:
+      valuesObject:
+        monitoring:
+          enabled: true
+          createPrometheusRules: true
+        cephClusterSpec:
+          dashboard:
+            ssl: false
+          placement:
+            all:
+              nodeAffinity:
+                requiredDuringSchedulingIgnoredDuringExecution:
+                  nodeSelectorTerms:
+                    - matchExpressions:
+                    - key: role
+                      operator: In
+                      values:
+                        - storage-node
+          storage:
+            useAllNodes: false
+            useAllDevices: false
+            nodes:
+              - name: "kube-work01.hyperpixel.net"
+                devices:
+                  - name: "/dev/disk/by-path/pci-0000:00:10.0-nvme-1"
+              - name: "kube-work02.hyperpixel.net"
+                devices:
+                  - name: "/dev/disk/by-path/pci-0000:00:10.0-nvme-1"
+              - name: "kube-work03.hyperpixel.net"
+                devices:
+                  - name: "/dev/disk/by-path/pci-0000:00:10.0-nvme-1"
+            config:
+              osdsPerDevice: '1'
+        ingress:
+          dashboard:
+            host: 
+              name: ceph.apps.hyperpixel.net
+              path: /
+              pathType: Prefix
+            annotations:
+              kubernetes.io/ingress.class: haproxy
+        cephBlockPools:
+          - name: ceph-blockpool
+            spec:
+              replicated:
+                size: 2
+        cephFileSystems:
+          - name: ceph-filesystem
+            spec:
+              metadataPool:
+                replicated:
+                  size: 3
+              dataPools:
+                - failureDomain: host
+                  replicated:
+                  size: 2
+        cephObjectStores:
+          - name: ceph-objectstore
+            spec:
+              metadataPool:
+                replicated:
+                  size: 3
+              dataPool:
+                replicated:
+                  size: 2
+              gateway:
+                instances: 3
+
+              
+          
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: rook-ceph
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+    automated:
+      prune: true
+      selfHeal: true
