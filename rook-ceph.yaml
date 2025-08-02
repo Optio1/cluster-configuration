@@ -56,8 +56,8 @@ spec:
           - name: ceph-blockpool
             spec:
               failureDomain: host
-              #replicated:
-              #  size: 2
+              replicated:
+                size: 2
             storageClass:
               enabled: true
               name: ceph-block
@@ -73,7 +73,10 @@ spec:
               dataPools:
                 - failureDomain: host
                   replicated:
-                  size: 2
+                    size: 2
+            metadataServer:
+              activeCount: 3
+              activeStandby: true
             storageClass:
               enabled: true
               isDefault: false
