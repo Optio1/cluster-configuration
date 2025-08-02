@@ -25,10 +25,10 @@ spec:
                 requiredDuringSchedulingIgnoredDuringExecution:
                   nodeSelectorTerms:
                     - matchExpressions:
-                    - key: role
-                      operator: In
-                      values:
-                        - storage-node
+                        - key: role
+                          operator: In
+                          values:
+                            - storage-node
           storage:
             useAllNodes: false
             useAllDevices: false
