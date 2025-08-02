@@ -59,6 +59,10 @@ spec:
                 size: 2
             storageClass:
               enabled: true
+              name: ceph-block
+              isDefault: true
+              reclaimPolicy: Delete
+              allowVolumeExpansion: true
         cephFileSystems:
           - name: ceph-filesystem
             spec:
@@ -71,6 +75,12 @@ spec:
                   size: 2
             storageClass:
               enabled: true
+              isDefault: false
+              name: ceph-filesystem
+              pool: data0
+              reclaimPolicy: Delete
+              allowVolumeExpansion: true
+              volumeBindingMode: "Immediate"
         cephObjectStores:
           - name: ceph-objectstore
             spec:
@@ -84,6 +94,9 @@ spec:
                 instances: 3
             storageClass:
               enabled: true
+              name: ceph-bucket
+              reclaimPolicy: Delete
+              volumeBindingMode: "Immediate"
 
               
           
