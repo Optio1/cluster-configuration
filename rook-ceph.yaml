@@ -74,9 +74,9 @@ spec:
                 - failureDomain: host
                   replicated:
                     size: 2
-            metadataServer:
-              activeCount: 3
-              activeStandby: true
+              metadataServer:
+                activeCount: 3
+                activeStandby: true
             storageClass:
               enabled: true
               isDefault: false
