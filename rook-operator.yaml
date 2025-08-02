@@ -10,11 +10,12 @@ spec:
     repoURL: 
     targetRevision: v1.17.7
     helm:
-      monitoring: 
-        enabled: true
-      csi:
-        serviceMonitor:
+      valuesObject:
+        monitoring: 
           enabled: true
+        csi:
+          serviceMonitor:
+            enabled: true
   destination:
     server: "https://kubernetes.default.svc"
     namespace: rook-ceph
