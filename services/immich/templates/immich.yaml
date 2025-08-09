@@ -66,7 +66,7 @@ spec:
                 name: immich-pg-pguser-immich-pg-admin
                 key: password
           - name: DB_DATABASE_NAME
-            value: immich
+            value: immich-pg
           - name: IMMICH_TELEMETRY_INCLUDE
             valueFrom:
               configMapKeyRef:
