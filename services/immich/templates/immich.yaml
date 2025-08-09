@@ -18,6 +18,8 @@ spec:
       - name: immich
         image: ghcr.io/immich-app/immich-server:{{ .Values.immichVersion }}
         env:
+          - name: IMMICH_MEDIA_LOCATION
+            value: /mnt/storage/data
           - name: DB_SSL_MODE
             value: "require"
           - name: REDIS_HOSTNAME
