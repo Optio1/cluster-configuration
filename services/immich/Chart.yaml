@@ -1,0 +1,3 @@
+apiVersion: v3
+name: "immich"
+version: 1.0.0
