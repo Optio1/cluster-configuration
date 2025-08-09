@@ -50,6 +50,11 @@ spec:
               secretKeyRef:
                 name: immich-pg-pguser-immich-pg
                 key: pgbouncer-uri
+          - name: DB_DATABASE_NAME
+            valueFrom:
+              secretKeyRef:
+                name: immich-pg-pguser-immich-pg
+                key: dbname
           - name: IMMICH_TELEMETRY_INCLUDE
             valueFrom:
               configMapKeyRef:
