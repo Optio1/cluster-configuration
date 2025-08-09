@@ -54,12 +54,12 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: immich-pg-pguser-immich-pg
-                key: host
+                key: pgbouncer-host
           - name: DB_PORT
             valueFrom:
               secretKeyRef:
                 name: immich-pg-pguser-immich-pg
-                key: port
+                key: pgbouncer-port
           - name: DB_USERNAME
             valueFrom:
               secretKeyRef:
