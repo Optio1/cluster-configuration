@@ -16,7 +16,7 @@ spec:
    spec:
       containers:
       - name: immich-ml
-        image: ghcr.io/immich-app/immich-machine-learning:{{ .Values.immichVersion }}-release
+        image: ghcr.io/immich-app/immich-machine-learning:{{ .Values.immichVersion }}
         env:
           - name: TZ
             valueFrom:
