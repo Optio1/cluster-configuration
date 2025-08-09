@@ -83,16 +83,16 @@ spec:
           - name: immich-config
             mountPath: /mnt/config/immich.json
             subPath: immich.json
-        volumes:
-          - name: immich-config
-            configMap:
-              name: immich-cm
-              items:
-              - key: IMMICH_CONFIG
-                path: immich.json
-          - name: immich-data
-            persistentVolumeClaim:
-            claimName: immich-pvc
+      volumes:
+        - name: immich-config
+          configMap:
+            name: immich-cm
+            items:
+            - key: IMMICH_CONFIG
+              path: immich.json
+        - name: immich-data
+          persistentVolumeClaim:
+          claimName: immich-pvc
 ---
 apiVersion: v1
 kind: Service
