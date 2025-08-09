@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: immich-cm
 data:
-  UPLOAD_LOCATION: /mnt/storage/upload
+  UPLOAD_LOCATION: /mnt/storage
   TZ: America/Chicago
   IMMICH_TELEMETRY_INCLUDE: all
   IMMICH_CONFIG_FILE: /mnt/config
