@@ -169,7 +169,7 @@ data:
       }
     },
     "server": {
-      "externalDomain": "immich.hyperpixel.net",
+      "externalDomain": "https://immich.hyperpixel.net",
       "loginPageMessage": ""
     },
     "notifications": {
