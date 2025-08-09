@@ -6,7 +6,7 @@ data:
   UPLOAD_LOCATION: /mnt/storage
   TZ: America/Chicago
   IMMICH_TELEMETRY_INCLUDE: all
-  IMMICH_CONFIG_FILE: /mnt/config
+  IMMICH_CONFIG_FILE: /mnt/config/immich.json
   IMMICH_CONFIG: |-
     {
     "ffmpeg": {
