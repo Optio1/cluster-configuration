@@ -48,27 +48,27 @@ spec:
           - name: DB_HOSTNAME
             valueFrom:
               secretKeyRef:
-                name: immich-pg-pguser-immich-pg
+                name: immich-pg-pguser-immich-pg-admin
                 key: pgbouncer-host
           - name: DB_PORT
             valueFrom:
               secretKeyRef:
-                name: immich-pg-pguser-immich-pg
+                name: immich-pg-pguser-immich-pg-admin
                 key: pgbouncer-port
           - name: DB_USERNAME
             valueFrom:
               secretKeyRef:
-                name: immich-pg-pguser-immich-pg
+                name: immich-pg-pguser-immich-pg-admin
                 key: user
           - name: DB_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: immich-pg-pguser-immich-pg
+                name: immich-pg-pguser-immich-pg-admin
                 key: password
           - name: DB_DATABASE_NAME
             valueFrom:
               secretKeyRef:
-                name: immich-pg-pguser-immich-pg
+                name: immich-pg-pguser-immich-pg-admin
                 key: dbname
           - name: IMMICH_TELEMETRY_INCLUDE
             valueFrom:
