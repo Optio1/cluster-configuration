@@ -133,7 +133,7 @@ data:
     "storageTemplate": {
       "enabled": false,
       "hashVerificationEnabled": true,
-      "template": "{{y}}/{{y}}-{{MM}}-{{dd}}/{{filename}}"
+      "template": "`{{y}}/{{y}}-{{MM}}-{{dd}}/{{filename}}`"
     },
     "image": {
       "thumbnail": {
