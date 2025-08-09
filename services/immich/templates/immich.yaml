@@ -24,8 +24,8 @@ spec:
         # args: [ "while true; do sleep 30; done;" ]
         image: ghcr.io/immich-app/immich-server:{{ .Values.immichVersion }}
         env:
-          # - name: IMMICH_MEDIA_LOCATION
-          #   value: /mnt/storage
+          - name: IMMICH_MEDIA_LOCATION
+            value: /mnt/storage
           - name: DB_SKIP_MIGRATIONS
             value: "true"
           - name: DB_SSL_MODE
