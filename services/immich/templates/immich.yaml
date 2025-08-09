@@ -15,9 +15,9 @@ spec:
        app: immich
    spec:
       securityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
       containers:
       - name: immich
         # command: [ "/bin/bash", "-c", "--" ]
