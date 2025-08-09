@@ -92,7 +92,7 @@ spec:
               path: immich.json
         - name: immich-data
           persistentVolumeClaim:
-          claimName: immich-pvc
+            claimName: immich-pvc
 ---
 apiVersion: v1
 kind: Service
