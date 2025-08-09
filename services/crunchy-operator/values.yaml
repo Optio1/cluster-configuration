@@ -55,7 +55,12 @@ imagePullSecretNames: []
 
 # Resource configuration of the PostgresCluster and PGUpgrade controllers.
 resources:
-  controller: {}
+  controller:
+    requests:
+      memory: 128Mi
+      cpu: 100m
+    limits:
+      memory: 512Mi
 # Define custom labels for PGO pods
 # Note: Defining labels that overlap with any Crunchy Data label, for example,
 # postgres-operator.crunchydata.com, will cause an error
