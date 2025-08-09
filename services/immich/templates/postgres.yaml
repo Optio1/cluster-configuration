@@ -5,6 +5,8 @@ metadata:
 spec:
   users:
     - name: immich-pg-admin
+      databases:
+        - immich-pg
       options: 'SUPERUSER'
   postgresVersion: {{ .Values.pgVersion }}
   instances:
