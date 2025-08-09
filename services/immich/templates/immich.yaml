@@ -45,11 +45,6 @@ spec:
               configMapKeyRef:
                 name: immich-cm
                 key: TZ
-          # - name: DB_URL
-          #   valueFrom:
-          #     secretKeyRef:
-          #       name: immich-pg-pguser-immich-pg
-          #       key: pgbouncer-uri
           - name: DB_HOSTNAME
             valueFrom:
               secretKeyRef:
