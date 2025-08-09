@@ -3,6 +3,9 @@ kind: PostgresCluster
 metadata:
   name: {{ .Values.pgClusterName }}
 spec:
+  users:
+    - name: immich-pg-admin
+      options: 'SUPERUSER'
   postgresVersion: {{ .Values.pgVersion }}
   instances:
     - name: {{ .Values.pgClusterName }}
