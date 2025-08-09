@@ -1,0 +1,134 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ labels:
+   app: immich
+ name: immich
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     app: immich
+ template:
+   metadata:
+     labels:
+       app: immich
+   spec:
+      containers:
+      - name: immich
+        image: ghcr.io/immich-app/immich-server:{{ .Values.immichVersion }}-release
+        env:
+          - name: REDIS_HOSTNAME
+            value: immich-valkey.svc.cluster.local:6379
+          - name: REDIS_PORT
+            value: 6379
+          - name: REDIS_USERNAME
+            value: ""
+          - name: REDIS_PASSWORD
+            value: ""
+          - name: REDIS_DBINDEX
+            value: "0"
+          - name: IMMICH_CONFIG_FILE
+            valueFrom:
+              configMapKeyRef:
+                name: immich-cm
+                key: IMMICH_CONFIG_FILE
+          - name: UPLOAD_LOCATION
+            valueFrom:
+              configMapKeyRef:
+                name: immich-cm
+                key: UPLOAD_LOCATION
+          - name: TZ
+            valueFrom:
+              configMapKeyRef:
+                name: immich-cm
+                key: TZ
+          - name: DB_URL
+            valueFrom:
+              secretKeyRef:
+                name: immich-pg-pguser-immich-pg
+                key: pgbouncer-uri
+          - name: IMMICH_TELEMETRY_INCLUDE
+            valueFrom:
+              configMapKeyRef:
+                name: immich-cm
+                key: IMMICH_TELEMETRY_INCLUDE
+        resources:
+          limits:
+            memory: 4000Mi
+          requests:
+            memory: 2000Mi
+            cpu: 100m
+        ports:
+        - containerPort: 2283
+        livenessProbe:
+          httpGet:
+            path: /api/server-info/ping
+            port: 2283
+          initialDelaySeconds: 30
+          periodSeconds: 20
+          timeoutSeconds: 2
+          failureThreshold: 5
+        readinessProbe:
+          httpGet:
+            path: /api/server-info/ping
+            port: 2283
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 3
+        volumeMounts:
+          - name: immich-data
+            mountPath: /mnt/storage
+          - name: immich-config
+            mountPath: /mnt/config/immich.json
+            subPath: immich.json
+        volumes:
+          - name: immich-config
+            configMap:
+              name: immich-cm
+              items:
+              - key: IMMICH_CONFIG
+                path: immich.json
+          - name: immich-data
+            persistentVolumeClaim:
+            claimName: immich-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: immich-svc
+  labels:
+    app: immich
+spec:
+  selector:
+    app: immich
+  ports:
+  - name: immich
+    port: 80
+    targetPort: 2283
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: immich-ingress
+  annotations:
+    kubernetes.io/ingress.class: haproxy
+    cert-manager.io/cluster-issuer: cluster-issuer
+spec:
+  rules:
+    - host: {{ .Values.hostname }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: immich-svc
+                port:
+                  number: 80
+  tls:
+    - secretName: immich-tls
+      hosts:
+        - {{ .Values.hostname }}
