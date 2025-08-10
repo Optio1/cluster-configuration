@@ -80,7 +80,7 @@ data:
     },
     "machineLearning": {
       "enabled": true,
-      "urls": ["http://immich-ml.svc.immich.svc:3003"],
+      "urls": ["http://immich-ml-svc.immich.svc:3003"],
       "clip": {
         "enabled": true,
         "modelName": "ViT-B-32__openai"
