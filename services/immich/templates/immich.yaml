@@ -100,14 +100,16 @@ spec:
           httpGet:
             path: /ping
             port: 2283
-          periodSeconds: 3
+          initialDelaySeconds: 5
+          periodSeconds: 20
           timeoutSeconds: 2
           failureThreshold: 5
         readinessProbe:
           httpGet:
             path: /ping
             port: 2283
-          periodSeconds: 3
+          initialDelaySeconds: 5
+          periodSeconds: 10
           timeoutSeconds: 1
           failureThreshold: 3
         volumeMounts:
