@@ -45,11 +45,13 @@ spec:
               configMapKeyRef:
                 name: immich-cm
                 key: IMMICH_CONFIG_FILE
+          # - name: UPLOAD_LOCATION
+          #   valueFrom:
+          #     configMapKeyRef:
+          #       name: immich-cm
+          #       key: UPLOAD_LOCATION
           - name: UPLOAD_LOCATION
-            valueFrom:
-              configMapKeyRef:
-                name: immich-cm
-                key: UPLOAD_LOCATION
+            value: "/mnt/storage"
           - name: TZ
             valueFrom:
               configMapKeyRef:
