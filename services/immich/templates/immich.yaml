@@ -100,7 +100,7 @@ spec:
         - containerPort: 2283
         livenessProbe:
           httpGet:
-            path: /api/server-info/ping
+            path: /ping
             port: 2283
           initialDelaySeconds: 30
           periodSeconds: 20
@@ -108,7 +108,7 @@ spec:
           failureThreshold: 5
         readinessProbe:
           httpGet:
-            path: /api/server-info/ping
+            path: /ping
             port: 2283
           initialDelaySeconds: 10
           periodSeconds: 10
