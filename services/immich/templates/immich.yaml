@@ -100,7 +100,6 @@ spec:
           httpGet:
             path: /ping
             port: 2283
-          initialDelaySeconds: 10
           periodSeconds: 20
           timeoutSeconds: 2
           failureThreshold: 5
@@ -108,7 +107,6 @@ spec:
           httpGet:
             path: /ping
             port: 2283
-          initialDelaySeconds: 5
           periodSeconds: 10
           timeoutSeconds: 1
           failureThreshold: 3
