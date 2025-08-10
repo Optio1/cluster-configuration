@@ -26,8 +26,8 @@ spec:
         env:
           - name: IMMICH_MEDIA_LOCATION
             value: /mnt/meta
-          - name: DB_SKIP_MIGRATIONS
-            value: "true"
+          # - name: DB_SKIP_MIGRATIONS
+          #   value: "true"
           - name: DB_SSL_MODE
             value: "require"
           - name: REDIS_HOSTNAME
