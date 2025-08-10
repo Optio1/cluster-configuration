@@ -20,4 +20,4 @@ spec:
   storageClassName: ceph-filesystem
   resources:
     requests:
-      storage: {{ .Values.initialPVSize }}
+      storage: {{ .Values.metaPVSize }}
