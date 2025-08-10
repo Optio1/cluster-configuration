@@ -9,15 +9,3 @@ spec:
   resources:
     requests:
       storage: {{ .Values.initialPVSize }}
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: immich-pvc-test
-spec:
-  accessModes:
-    - ReadWriteMany
-  storageClassName: ceph-filesystem
-  resources:
-    requests:
-      storage: {{ .Values.metaPVSize }}
