@@ -30,6 +30,10 @@ spec:
         persistence:
           enabled: true
           resourcePolicy: ""
+        imageChartStorage:
+          type: s3
+          s3:
+            
         ipFamily:
           ipv6:
             enabled: false
