@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     chart: volsync
-    repoURL: https://charts.rook.io/release
+    repoURL: https://backube.github.io/helm-charts/
     targetRevision: 0.13.0
     helm:
       valuesObject:
