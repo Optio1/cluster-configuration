@@ -1,3 +1,0 @@
-apiVersion: v3
-name: "cert-manager-deployer"
-version: 1.0.0
