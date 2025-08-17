@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ labels:
+   app: minecraft
+ name: minecraft
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     app: minecraft
+ template:
+   metadata:
+     labels:
+       app: minecraft
+   spec:
+     containers:
+      - name: minecraft
+        image: itzg/minecraft-server
+        ports:
+          - containerPort: 25565
+        resources:
+          limits:
+            memory: 5Gi
+          requests:
+            memory: 5Gi
+            cpu: 10m
