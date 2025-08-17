@@ -7,13 +7,10 @@ metadata:
   namespace: metallb
 spec:
   addresses:
-    - 10.198.0.0/16
+    - 10.199.99.0/24
 ---
 apiVersion: metallb.io/v1beta1
-kind: BGPAdvertisement
+kind: L2Advertisement
 metadata:
-  name: external
+  name: l2metallb
   namespace: metallb
-spec:
-  ipAddressPools:
-  - production
