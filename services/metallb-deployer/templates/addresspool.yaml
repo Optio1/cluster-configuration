@@ -12,6 +12,7 @@ apiVersion: metallb.io/v1beta1
 kind: BGPAdvertisement
 metadata:
   name: external
+  namespace: metallb
 spec:
   ipAddressPools:
   - production
