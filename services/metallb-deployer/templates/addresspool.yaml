@@ -4,6 +4,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
   name: production
+  namespace: metallb
 spec:
   addresses:
     - 10.198.0.0/16
