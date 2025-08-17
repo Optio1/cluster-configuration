@@ -15,4 +15,4 @@ spec:
               service:
                 name: minecraft-svc
                 port:
-                  number: 80
+                  number: 25565

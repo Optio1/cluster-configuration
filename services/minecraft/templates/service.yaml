@@ -9,6 +9,6 @@ spec:
    app: minecraft
  ports:
  - name: port-1
-   port: 80
+   port: 25565
    protocol: TCP
    targetPort: 25565
