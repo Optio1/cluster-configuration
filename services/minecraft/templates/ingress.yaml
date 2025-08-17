@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: minecraft-ingress
   annotations:
+    haproxy.org/tcp-service: "true"
     kubernetes.io/ingress.class: haproxy
 spec:
   rules:
