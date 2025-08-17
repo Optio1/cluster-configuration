@@ -16,6 +16,7 @@ spec:
    spec:
      containers:
       - name: minecraft
+        imagePullPolicy: IfNotPresent
         env:
           - name: EULA
             value: "TRUE"
