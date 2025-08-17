@@ -5,10 +5,11 @@ metadata:
    app: minecraft
  name: minecraft-svc
 spec:
- selector:
-   app: minecraft
- ports:
- - name: port-1
-   port: 25565
-   protocol: TCP
-   targetPort: 25565
+  type: LoadBalancer
+  selector:
+    app: minecraft
+  ports:
+  - name: port-1
+    port: 25565
+    protocol: TCP
+    targetPort: 25565

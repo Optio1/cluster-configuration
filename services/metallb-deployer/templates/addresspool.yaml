@@ -1,0 +1,17 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+  name: production
+spec:
+  addresses:
+    - 10.198.0.0/16
+---
+apiVersion: metallb.io/v1beta1
+kind: BGPAdvertisement
+metadata:
+  name: external
+spec:
+  ipAddressPools:
+  - production
