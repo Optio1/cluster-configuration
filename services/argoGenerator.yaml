@@ -29,5 +29,6 @@ spec:
         - CreateNamespace=true
         - ServerSideApply=true
         automated:
+          allowEmpty: true
           prune: true
           selfHeal: true
