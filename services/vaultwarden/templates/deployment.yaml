@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ labels:
+   run: vaultwarden
+ name: vaultwarden
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     run: vaultwarden
+ template:
+   metadata:
+     labels:
+       run: vaultwarden
+   spec:
+     volumes:
+      - name: vaultwarden-pv
+        persistentVolumeClaim:
+          claimName: vaultwarden-pvc
+     containers:
+      - name: vaultwarden
+        image: {{ .Values.image }}
+        env:
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: vaultwarden-pg-pguser-vaultwarden-pg-admin
+                key: pgbouncer-jdbc-uri
+        ports:
+          - containerPort: 80
+        resources:
+          limits:
+            memory: 1000Mi
+          requests:
+            memory: 800Mi
+            cpu: 100m
+        livenessProbe:
+          httpGet:
+            path: /alive
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        volumeMounts:
+          - name: vaultwarden-pv
+            mountPath: /data/

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ labels:
+   run: revolt-rabbitmq
+ name: revolt-rabbitmq
+ namespace: revolt
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     run: revolt-rabbitmq
+ template:
+   metadata:
+     labels:
+       run: revolt-rabbitmq
+   spec:
+     volumes:
+      - name: revolt-rabbitmq-pv
+        persistentVolumeClaim:
+          claimName: revolt-rabbitmq-pvc
+     containers:
+      - name: revolt-rabbitmq
+        image: docker.io/rabbitmq:4
+        ports:
+          - containerPort: 27017
+        resources:
+          limits:
+            memory: 1000Mi
+          requests:
+            memory: 800Mi
+            cpu: 100m
+        livenessProbe:
+          exec:
+            command:
+              - echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        volumeMounts:
+          - name: revolt-rabbitmq-pv
+            mountPath: /data/db
