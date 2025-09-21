@@ -48,7 +48,7 @@ spec:
                 name: vaultwarden-pg-pguser-vaultwarden-pg-admin
                 key: password
           - name: PGREQUIRESSL
-            value: true
+            value: '1'
           
         ports:
           - containerPort: 80
