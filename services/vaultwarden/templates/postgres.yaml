@@ -8,9 +8,6 @@ spec:
       databases:
         - vaultwarden-pg
       options: 'SUPERUSER'
-  patroni:
-    tls:
-      enabled: true
   postgresVersion: {{ .Values.pgVersion }}
   instances:
     - name: {{ .Values.pgClusterName }}
