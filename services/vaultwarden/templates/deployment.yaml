@@ -26,7 +26,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: vaultwarden-pg-pguser-vaultwarden-pg-admin
-                key: pgbouncer-jdbc-uri
+                key: pgbouncer-uri
         ports:
           - containerPort: 80
         resources:
