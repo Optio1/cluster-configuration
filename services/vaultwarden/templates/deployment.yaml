@@ -22,11 +22,34 @@ spec:
       - name: vaultwarden
         image: {{ .Values.image }}
         env:
-          - name: DATABASE_URL
+          - name: PGHOST
             valueFrom:
               secretKeyRef:
                 name: vaultwarden-pg-pguser-vaultwarden-pg-admin
-                key: pgbouncer-uri
+                key: host
+          - name: PGPORT
+            valueFrom:
+              secretKeyRef:
+                name: vaultwarden-pg-pguser-vaultwarden-pg-admin
+                key: port
+          - name: PGDATABASE
+            valueFrom:
+              secretKeyRef:
+                name: vaultwarden-pg-pguser-vaultwarden-pg-admin
+                key: dbname
+          - name: PGUSER
+            valueFrom:
+              secretKeyRef:
+                name: vaultwarden-pg-pguser-vaultwarden-pg-admin
+                key: user
+          - name: PGPASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: vaultwarden-pg-pguser-vaultwarden-pg-admin
+                key: password
+          - name: PGREQUIRESSL
+            value: true
+          
         ports:
           - containerPort: 80
         resources:
