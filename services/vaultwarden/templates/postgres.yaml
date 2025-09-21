@@ -1,0 +1,68 @@
+apiVersion: postgres-operator.crunchydata.com/v1beta1
+kind: PostgresCluster
+metadata:
+  name: {{ .Values.pgClusterName }}
+spec:
+  users:
+    - name: vaultwarden-pg-admin
+      databases:
+        - vaultwarden-pg
+      options: 'SUPERUSER'
+  postgresVersion: {{ .Values.pgVersion }}
+  instances:
+    - name: {{ .Values.pgClusterName }}
+      resources:
+        requests:
+          cpu: 500m
+          memory: 1Gi
+        limits:
+          memory: 4Gi
+      replicas: 3
+      dataVolumeClaimSpec:
+        storageClassName: ceph-filesystem
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: {{ .Values.pgStorage }}
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            podAffinityTerm:
+              topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchLabels:
+                  postgres-operator.crunchydata.com/cluster: {{ .Values.pgClusterName }}
+                  postgres-operator.crunchydata.com/instance-set: {{ .Values.pgClusterName }}
+  backups:
+    pgbackrest:
+      repos:
+      - name: repo1
+        volume:
+          volumeClaimSpec:
+            storageClassName: ceph-filesystem
+            accessModes:
+            - "ReadWriteOnce"
+            resources:
+              requests:
+                storage: {{ .Values.pgStorage }}
+  proxy:
+    pgBouncer:
+      replicas: 3
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          memory: 512Mi
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            podAffinityTerm:
+              topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchLabels:
+                  postgres-operator.crunchydata.com/cluster: {{ .Values.pgClusterName }}
+                  postgres-operator.crunchydata.com/role: pgbouncer
