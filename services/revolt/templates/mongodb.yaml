@@ -136,8 +136,8 @@ spec:
               filesystem:
                 path: /mnt/nfs/
             volumeMounts:
-            - mountPath: /mnt/nfs/
-              name: backup-nfs
+              - mountPath: /mnt/nfs/
+                name: backup-nfs
           pitr:
             enabled: false
             oplogOnly: false
