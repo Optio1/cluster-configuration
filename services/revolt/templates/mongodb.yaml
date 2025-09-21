@@ -14,25 +14,191 @@ spec:
     path: charts/psmdb-db/
     helm:
       valuesObject:
+        platform: kubernetes
+
+        finalizers:
+          - percona.com/delete-psmdb-pods-in-order
+        #  - percona.com/delete-psmdb-pvc
+
+        nameOverride: "revolt-mongo"
+
+        crVersion: 1.20.1
+        pause: false
+        unmanaged: false
+        unsafeFlags:
+          tls: false
+          replsetSize: false
+          mongosSize: false
+          terminationGracePeriod: false
+          backupIfUnhealthy: false
+
+        enableVolumeExpansion: false
+
+        annotations: {}
+
+        multiCluster:
+          enabled: false
+        updateStrategy: SmartUpdate
+        upgradeOptions:
+          versionServiceEndpoint: https://check.percona.com
+          apply: disabled
+          schedule: "0 2 * * *"
+          setFCV: false
+
+        image:
+          repository: percona/percona-server-mongodb
+          tag: 7.0.18-11
+
+        imagePullPolicy: Always
+        secrets: {}
+
+        pmm:
+          enabled: false
+
         replsets:
-          - name: rs0
+          rs0:
+            name: rs0
             size: 3
+            affinity:
+              antiAffinityTopologyKey: "kubernetes.io/hostname"
+            podDisruptionBudget:
+              maxUnavailable: 1
             expose:
-              enabled: true
+              enabled: false
             resources:
-              requests:
+              limits:
                 cpu: "300m"
                 memory: "0.5G"
-              limits:
+              requests:
                 cpu: "300m"
                 memory: "0.5G"
             volumeSpec:
               pvc:
+                storageClassName: ceph-filesystem
                 resources:
                   requests:
                     storage: 3Gi
+            nonvoting:
+              enabled: false
+            arbiter:
+              enabled: false
         sharding:
+          enabled: true
+          balancer:
+            enabled: true
+
+          configrs:
+            size: 3
+            affinity:
+              antiAffinityTopologyKey: "kubernetes.io/hostname"
+            podDisruptionBudget:
+              maxUnavailable: 1
+            expose:
+              enabled: false
+              type: ClusterIP
+            resources:
+              limits:
+                cpu: "300m"
+                memory: "0.5G"
+              requests:
+                cpu: "300m"
+                memory: "0.5G"
+            volumeSpec:
+              pvc:
+                storageClassName: ceph-filesystem
+                resources:
+                  requests:
+                    storage: 3Gi
+
+          mongos:
+            size: 3
+            affinity:
+              antiAffinityTopologyKey: "kubernetes.io/hostname"
+            podDisruptionBudget:
+              maxUnavailable: 1
+            resources:
+              limits:
+                cpu: "300m"
+                memory: "0.5G"
+              requests:
+                cpu: "300m"
+                memory: "0.5G"
+            expose:
+              enabled: false
+        backup:
           enabled: false
+          image:
+            repository: percona/percona-backup-mongodb
+            tag: 2.9.1
+          storages:
+            backup-nfs:
+              type: filesystem
+              filesystem:
+                path: /mnt/nfs/
+            volumeMounts:
+            - mountPath: /mnt/nfs/
+              name: backup-nfs
+          pitr:
+            enabled: false
+            oplogOnly: false
+            # oplogSpanMin: 10
+            # compressionType: gzip
+            # compressionLevel: 6
+          # configuration:
+          #   backupOptions:
+          #     priority:
+          #       "localhost:28019": 2.5
+          #       "localhost:27018": 2.5
+          #     timeouts:
+          #       startingStatus: 33
+          #     oplogSpanMin: 10
+          #   restoreOptions:
+          #     batchSize: 500
+          #     numInsertionWorkers: 10
+          #     numDownloadWorkers: 4
+          #     maxDownloadBufferMb: 0
+          #     downloadChunkMb: 32
+          #     mongodLocation: /usr/bin/mongo
+          #     mongodLocationMap:
+          #       "node01:2017": /usr/bin/mongo
+          #       "node03:27017": /usr/bin/mongo
+          tasks:
+          # - name: daily-s3-us-west
+          #   enabled: true
+          #   schedule: "0 0 * * *"
+          #   keep: 3
+          #   storageName: s3-us-west
+          #   compressionType: gzip
+          # - name: weekly-s3-us-west
+          #   enabled: false
+          #   schedule: "0 0 * * 0"
+          #   keep: 5
+          #   storageName: s3-us-west
+          #   compressionType: gzip
+          # - name: weekly-s3-us-west-physical
+          #   enabled: false
+          #   schedule: "0 5 * * 0"
+          #   keep: 5
+          #   type: physical
+          #   storageName: s3-us-west
+          #   compressionType: gzip
+          #   compressionLevel: 6
+
+        # If you set systemUsers here the secret will be constructed by helm with these values
+        # systemUsers:
+        #   MONGODB_BACKUP_USER: backup
+        #   MONGODB_BACKUP_PASSWORD: backup123456
+        #   MONGODB_DATABASE_ADMIN_USER: databaseAdmin
+        #   MONGODB_DATABASE_ADMIN_PASSWORD: databaseAdmin123456
+        #   MONGODB_CLUSTER_ADMIN_USER: clusterAdmin
+        #   MONGODB_CLUSTER_ADMIN_PASSWORD: clusterAdmin123456
+        #   MONGODB_CLUSTER_MONITOR_USER: clusterMonitor
+        #   MONGODB_CLUSTER_MONITOR_PASSWORD: clusterMonitor123456
+        #   MONGODB_USER_ADMIN_USER: userAdmin
+        #   MONGODB_USER_ADMIN_PASSWORD: userAdmin123456
+        #   PMM_SERVER_API_KEY: apikey
+        #   # PMM_SERVER_USER: admin
+        #   # PMM_SERVER_PASSWORD: admin
   destination:
     server: "https://kubernetes.default.svc"
     namespace: revolt
