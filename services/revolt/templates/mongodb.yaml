@@ -34,7 +34,8 @@ spec:
           exec:
             command:
               - echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
-            periodSeconds: 10
+          initialDelaySeconds: 10
+          periodSeconds: 10
         volumeMounts:
           - name: revolt-mongo-pv
             mountPath: /data/db
