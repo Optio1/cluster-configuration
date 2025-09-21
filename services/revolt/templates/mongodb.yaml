@@ -26,10 +26,10 @@ spec:
           - containerPort: 27017
         resources:
           limits:
-            memory: 5Mi
+            memory: 1000Mi
           requests:
-            memory: 2Mi
-            cpu: 10m
+            memory: 800Mi
+            cpu: 100m
         livenessProbe:
           exec:
             command:
