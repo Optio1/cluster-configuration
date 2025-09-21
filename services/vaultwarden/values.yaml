@@ -1,4 +1,5 @@
 pvSize: 10Gi
+pgVersion: 17
 image: ghcr.io/dani-garcia/vaultwarden:1.34.3
 pgStorage: 3Gi
 pgClusterName: vaultwarden-pg
