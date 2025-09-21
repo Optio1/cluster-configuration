@@ -1,0 +1,6 @@
+pvSize: 10Gi
+image: vaultwarden/server:sha256-d70118b9dafb8588ee2651ceb5df68db27dcbd8e18467722010644ba48d5d6d6
+pgVersion: 17
+pgStorage: 3Gi
+pgClusterName: vaultwarden-pg
+hostname: vault.hyperpixel.net
