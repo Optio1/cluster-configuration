@@ -135,7 +135,7 @@ spec:
               type: filesystem
               filesystem:
                 path: /mnt/nfs/
-            volumeMounts:
+              volumeMounts:
               - mountPath: /mnt/nfs/
                 name: backup-nfs
           pitr:
