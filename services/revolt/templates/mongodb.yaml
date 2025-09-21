@@ -11,6 +11,10 @@ spec:
     repoURL: https://percona.github.io/percona-helm-charts/
     targetRevision: 1.20.1
     chart: psmdb-db
+    helm:
+      valuesObject:
+        backup:
+          enabled: false
   destination:
     server: "https://kubernetes.default.svc"
     namespace: revolt
