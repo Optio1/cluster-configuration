@@ -33,8 +33,6 @@ spec:
             value: "true"
           - name: LOG_LEVEL
             value: info
-          - name: ADMIN_TOKEN
-            value: supersecretpassword
           - name: DOMAIN
             value: {{ .Values.domain }}
           - name: INVITATIONS_ALLOWED
