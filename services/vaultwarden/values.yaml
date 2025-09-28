@@ -5,5 +5,5 @@ pgStorage: 3Gi
 pgClusterName: vaultwarden-pg
 hostname: vault.hyperpixel.net
 domain: https://vault.hyperpixel.net
-invitations: false
-signups: false
+invitations: "false"
+signups: "false"

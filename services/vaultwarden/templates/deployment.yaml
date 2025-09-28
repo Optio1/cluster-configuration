@@ -28,9 +28,9 @@ spec:
                 name: vaultwarden-pg-pguser-vaultwarden-pg-admin
                 key: uri
           - name: USE_SYSLOG
-            value: true
+            value: "true"
           - name: EXTENDED_LOGGING
-            value: true
+            value: "true"
           - name: LOG_LEVEL
             value: info
           - name: ADMIN_TOKEN
