@@ -18,6 +18,6 @@ spec:
                 port:
                   number: 80
   tls:
-    - secretName: immich-tls
+    - secretName: vaultwarden-tls
       hosts:
         - {{ .Values.hostname }}
