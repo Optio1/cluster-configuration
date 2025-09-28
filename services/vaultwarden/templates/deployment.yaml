@@ -27,6 +27,20 @@ spec:
               secretKeyRef:
                 name: vaultwarden-pg-pguser-vaultwarden-pg-admin
                 key: uri
+          - name: USE_SYSLOG
+            value: true
+          - name: EXTENDED_LOGGING
+            value: true
+          - name: LOG_LEVEL
+            value: info
+          - name: ADMIN_TOKEN
+            value: supersecretpassword
+          - name: DOMAIN
+            value: {{ .Values.domain }}
+          - name: INVITATIONS_ALLOWED
+            value: {{ .Values.invitations }}
+          - name: SIGNUPS_ALLOWED
+            value: {{ .Values.signups }}
         ports:
           - containerPort: 80
         resources:
