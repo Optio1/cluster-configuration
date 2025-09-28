@@ -38,9 +38,9 @@ spec:
           - name: DOMAIN
             value: {{ .Values.domain }}
           - name: INVITATIONS_ALLOWED
-            value: {{ .Values.invitations }}
+            value: "{{ .Values.invitations }}"
           - name: SIGNUPS_ALLOWED
-            value: {{ .Values.signups }}
+            value: "{{ .Values.signups }}"
         ports:
           - containerPort: 80
         resources:
