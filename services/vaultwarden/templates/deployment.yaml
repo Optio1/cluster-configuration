@@ -14,41 +14,46 @@ spec:
      labels:
        run: vaultwarden
    spec:
-     volumes:
-      - name: vaultwarden-pv
-        persistentVolumeClaim:
-          claimName: vaultwarden-pvc
+    #  volumes:
+    #   - name: vaultwarden-pv
+    #     persistentVolumeClaim:
+    #       claimName: vaultwarden-pvc
      containers:
       - name: vaultwarden
         image: {{ .Values.image }}
         env:
-          - name: PGHOST
+          - name: DATABASE_URL
             valueFrom:
               secretKeyRef:
                 name: vaultwarden-pg-pguser-vaultwarden-pg-admin
-                key: host
-          - name: PGPORT
-            valueFrom:
-              secretKeyRef:
-                name: vaultwarden-pg-pguser-vaultwarden-pg-admin
-                key: port
-          - name: PGDATABASE
-            valueFrom:
-              secretKeyRef:
-                name: vaultwarden-pg-pguser-vaultwarden-pg-admin
-                key: dbname
-          - name: PGUSER
-            valueFrom:
-              secretKeyRef:
-                name: vaultwarden-pg-pguser-vaultwarden-pg-admin
-                key: user
-          - name: PGPASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: vaultwarden-pg-pguser-vaultwarden-pg-admin
-                key: password
-          - name: PGREQUIRESSL
-            value: '1'
+                key: uri
+          # - name: PGHOST
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: vaultwarden-pg-pguser-vaultwarden-pg-admin
+          #       key: host
+          # - name: PGPORT
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: vaultwarden-pg-pguser-vaultwarden-pg-admin
+          #       key: port
+          # - name: PGDATABASE
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: vaultwarden-pg-pguser-vaultwarden-pg-admin
+          #       key: dbname
+          # - name: PGUSER
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: vaultwarden-pg-pguser-vaultwarden-pg-admin
+          #       key: user
+          # - name: PGPASSWORD
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: vaultwarden-pg-pguser-vaultwarden-pg-admin
+          #       key: password
+          # - name: PGREQUIRESSL
+          #   value: '1'
         ports:
           - containerPort: 80
         resources:
@@ -63,6 +68,6 @@ spec:
             port: 80
           initialDelaySeconds: 10
           periodSeconds: 10
-        volumeMounts:
-          - name: vaultwarden-pv
-            mountPath: /data/
+        # volumeMounts:
+        #   - name: vaultwarden-pv
+        #     mountPath: /data/
