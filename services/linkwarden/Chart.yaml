@@ -1,0 +1,3 @@
+apiVersion: v3
+name: "linkwarden"
+version: 1.0.0
