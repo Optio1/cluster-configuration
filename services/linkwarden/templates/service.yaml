@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: vaultwarden-svc
   labels:
-    run: vaultwarden
+    app: vaultwarden
 spec:
   selector:
-    run: vaultwarden
+    app: vaultwarden
   ports:
   - name: vaultwarden
     port: 80
