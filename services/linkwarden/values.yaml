@@ -1,5 +1,5 @@
 pvSize: 10Gi
 pgVersion: 17
 pgStorage: 3Gi
-pgClusterName: linkwraden-pg
+pgClusterName: linkwarden-pg
 hostname: links.hyperpixel.net
