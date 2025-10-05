@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: vaultwarden-svc
+  name: linkwarden-svc
   labels:
-    app: vaultwarden
+    app: linkwarden
 spec:
   selector:
-    app: vaultwarden
+    app: linkwarden
   ports:
-  - name: vaultwarden
+  - name: linkwarden
     port: 80
     targetPort: 3000
   type: ClusterIP
