@@ -26,10 +26,8 @@ spec:
         namespace: '{{.path.basename}}'
       syncPolicy:
         managedNamespaceMetadata:
-          labels:
-            argocd.argoproj.io/tracking-id: "{{ .path.basename }}::{{ .path.basename }}"
           annotations:
-
+            argocd.argoproj.io/tracking-id: "{{ .path.basename }}::{{ .path.basename }}"
         syncOptions:
         - CreateNamespace=true
         - ServerSideApply=true
