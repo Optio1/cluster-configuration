@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: awx
+  namespace: awx
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  project: default
+  source:
+    chart: awx-operator
+    repoURL: https://ansible-community.github.io/awx-operator-helm/
+    targetRevision: 3.2.0
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: awx
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+    automated:
+      prune: true
+      selfHeal: true
