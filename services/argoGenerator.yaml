@@ -25,6 +25,11 @@ spec:
         server: https://kubernetes.default.svc
         namespace: '{{.path.basename}}'
       syncPolicy:
+        managedNamespaceMetadata:
+          labels:
+            argocd.argoproj.io/tracking-id: "{{ .path.basename }}::{{ .path.basename }}"
+          annotations:
+
         syncOptions:
         - CreateNamespace=true
         - ServerSideApply=true
