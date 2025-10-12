@@ -1,7 +1,7 @@
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
-  name: "{{ .values.name }}-sub"
+  name: "eso-sub"
 spec:
   channel: stable
   installPlanApproval: Automatic
