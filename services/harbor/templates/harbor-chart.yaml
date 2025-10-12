@@ -1,50 +1,50 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: harbor-helm
-  namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-wave: "3"
-spec:
-  project: default
-  source:
-    chart: harbor
-    repoURL: https://helm.goharbor.io
-    targetRevision: v1.17.1
-    helm:
-      valuesObject:
-        expose:
-          type: ingress
-          tls:
-            enabled: true
-            certSource: secret
-            secret:
-              secretName: "harbor-tls"
-          ingress:
-            hosts:
-              core: harbor.hyperpixel.net
-            annotations:
-              kubernetes.io/ingress.class: haproxy
-              cert-manager.io/cluster-issuer: cluster-issuer
-        externalURL: https://harbor.hyperpixel.net
-        persistence:
-          enabled: true
-          resourcePolicy: ""
-        imageChartStorage:
-          type: s3
-          s3:
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: harbor-helm
+#   namespace: argocd
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "3"
+# spec:
+#   project: default
+#   source:
+#     chart: harbor
+#     repoURL: https://helm.goharbor.io
+#     targetRevision: v1.17.1
+#     helm:
+#       valuesObject:
+#         expose:
+#           type: ingress
+#           tls:
+#             enabled: true
+#             certSource: secret
+#             secret:
+#               secretName: "harbor-tls"
+#           ingress:
+#             hosts:
+#               core: harbor.hyperpixel.net
+#             annotations:
+#               kubernetes.io/ingress.class: haproxy
+#               cert-manager.io/cluster-issuer: cluster-issuer
+#         externalURL: https://harbor.hyperpixel.net
+#         persistence:
+#           enabled: true
+#           resourcePolicy: ""
+#         imageChartStorage:
+#           type: s3
+#           s3:
             
-        ipFamily:
-          ipv6:
-            enabled: false
+#         ipFamily:
+#           ipv6:
+#             enabled: false
         
-  destination:
-    server: "https://kubernetes.default.svc"
-    namespace: harbor
-  syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
-      - ServerSideApply=true
-    automated:
-      prune: true
-      selfHeal: true
+#   destination:
+#     server: "https://kubernetes.default.svc"
+#     namespace: harbor
+#   syncPolicy:
+#     syncOptions:
+#       - CreateNamespace=true
+#       - ServerSideApply=true
+#     automated:
+#       prune: true
+#       selfHeal: true
