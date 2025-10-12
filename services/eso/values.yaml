@@ -1,3 +1,3 @@
-ogTargetNamespace: external-secrets-operator
+ogTargetNamespace: eso
 name: eso
 operatorName: external-secrets-operator
