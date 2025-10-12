@@ -1,7 +1,7 @@
 kind: OperatorGroup
 apiVersion: operators.coreos.com/v1
 metadata:
-  name: "{{ .values.name }}-og"
+  name: "{{ .Values.name }}-og"
 spec:
   targetNamespaces:
-  - {{ .values.ogTargetNamespace }}
+  - {{ .Values.ogTargetNamespace }}
