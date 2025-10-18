@@ -19,8 +19,6 @@ spec:
           install: false
         registry:
           enabled: false
-        nginx-ingress:
-          enabled: false
         certmanager:
           rbac:
             create: false
@@ -28,6 +26,7 @@ spec:
           rbac:
             create: false
         nginx-ingress:
+          enabled: false
           rbac:
             create: false
             createClusterRole: false
@@ -41,6 +40,8 @@ spec:
         postgresql:
           install: false
         global:
+          nginx-ingress:
+            enabled: false
           pages:
             enabled: false
           registry:
