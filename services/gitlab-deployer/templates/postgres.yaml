@@ -2,6 +2,7 @@ apiVersion: postgres-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
   name: {{ .Values.pgClusterName }}
+  namespace: gitlab
 spec:
   users:
     - name: gitlab-pg-admin
