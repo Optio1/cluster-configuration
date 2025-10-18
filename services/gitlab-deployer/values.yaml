@@ -1,4 +1,4 @@
 pgVersion: 16
 pgClusterName: gitlab-cluster
 pgStorage: 5Gi
-gitlabVersion: v18.5.0
+gitlabVersion: v18.2.0
