@@ -3,6 +3,8 @@ kind: PostgresCluster
 metadata:
   name: {{ .Values.pgClusterName }}
   namespace: gitlab
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   users:
     - name: gitlab-pg-admin
