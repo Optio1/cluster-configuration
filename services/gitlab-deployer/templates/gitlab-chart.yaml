@@ -62,8 +62,6 @@ spec:
               cert-manager.io/cluster-issuer: cluster-issuer
             class: haproxy
             provider: haproxy
-            tls:
-              secretName: gitlab-tls
           image:
             pullPolicy: IfNotPresent
           psql:
@@ -129,6 +127,13 @@ spec:
                 memory: 2G
             http:
               enabled: true
+            ingress:
+              tls:
+                secretName: gitlab-tls
+          kas:
+            ingress:
+              tls:
+                secretName: gitlab-tls
             
           
   destination:
