@@ -133,7 +133,7 @@ spec:
           kas:
             ingress:
               tls:
-                secretName: gitlab-tls
+                secretName: kas-tls
             
           
   destination:
