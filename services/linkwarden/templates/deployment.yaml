@@ -46,6 +46,8 @@ spec:
                 key: BUCKET_NAME
           - name: SPACES_REGION
             value: us-east-1
+          - name: SPACES_FORCE_PATH_STYLE
+            value: "true"
         image: ghcr.io/linkwarden/linkwarden:latest
         ports:
           - containerPort: 3000
