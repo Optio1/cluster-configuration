@@ -27,6 +27,26 @@ spec:
             value: supersecret-value-two
           - name: NEXTAUTH_URL
             value: https://links.hyperpixel.net/api/v1/auth
+          - name: SPACES_KEY
+            valueFrom:
+              secretKeyRef:
+                name: linkwarden-s3
+                key: AWS_ACCESS_KEY_ID
+          - name: SPACES_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: linkwarden-s3
+                key: AWS_SECRET_ACCESS_KEY
+          - name: SPACES_ENDPOINT
+            valueFrom:
+              configMapKeyRef:
+                name: linkwarden-s3
+                key: BUCKET_HOST
+          - name: SPACES_BUCKET_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: linkwarden-s3
+                key: BUCKET_NAME
         image: ghcr.io/linkwarden/linkwarden:latest
         ports:
           - containerPort: 3000
