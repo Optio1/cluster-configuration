@@ -54,7 +54,7 @@ spec:
           praefect:
             enabled: true
           hosts:
-            domain: gitlab.hyperpixel.net
+            domain: hyperpixel.net
           minio:
             enabled: false
           ingress:
