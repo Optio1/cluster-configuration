@@ -54,8 +54,6 @@ spec:
             enabled: true
           praefect:
             enabled: true
-          hosts:
-            domain: hyperpixel.net
           minio:
             enabled: false
           ingress:
@@ -74,6 +72,7 @@ spec:
               key:
               secret:
           hosts:
+            domain: hyperpixel.net
             https: true
           email:
             display_name: "Hyperpixel GitLab"
