@@ -47,6 +47,8 @@ spec:
               configMapKeyRef:
                 name: linkwarden-s3
                 key: BUCKET_NAME
+          - name: SPACES_REGION
+            value: us-east-1
         image: ghcr.io/linkwarden/linkwarden:latest
         ports:
           - containerPort: 3000
