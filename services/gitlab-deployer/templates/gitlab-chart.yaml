@@ -46,7 +46,7 @@ spec:
           edition: ce
           time_zone: America/Chicago
           application:
-            create: true
+            create: false
           gitaly:
             enabled: true
           praefect:
