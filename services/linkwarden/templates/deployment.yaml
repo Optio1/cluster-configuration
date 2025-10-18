@@ -24,7 +24,7 @@ spec:
                 name: linkwarden-pg-pguser-linkwarden-pg-admin
                 key: uri
           - name: NEXTAUTH_SECRET
-            value: supersecret-value
+            value: supersecret-value-two
         image: ghcr.io/linkwarden/linkwarden:latest
         ports:
           - containerPort: 3000
