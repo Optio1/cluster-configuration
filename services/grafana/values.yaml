@@ -2,3 +2,4 @@ name: grafana
 ogTargetNamespace: grafana
 operatorName: grafana-operator
 channel: v5
+hostname: grafana.hyperpixel.net
