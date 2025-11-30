@@ -1,3 +1,4 @@
 name: grafana
 ogTargetNamespace: grafana
 operatorName: grafana-operator
+channel: v5

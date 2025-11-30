@@ -3,7 +3,7 @@ kind: Subscription
 metadata:
   name: "{{ .Values.name }}-sub"
 spec:
-  channel: stable
+  channel: {{ .Values.channel }}
   installPlanApproval: Automatic
   name: {{ .Values.operatorName }}
   source: operatorhubio-catalog
